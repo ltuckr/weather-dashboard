@@ -24,10 +24,21 @@ var tempNow = $("temp-now");
 var humidityNow = $("humidity-now");
 var windNow = $("wind=now");
 
-// Use AJAX to call current weather
-function currentWeather(city){
-    var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
-    $.ajax({
-        url:queryURL,
-        method:"GET",
-    }).then(function(response){
+// call current weather code from https://nordicapis.com/how-to-build-an-api-driven-weather-app/
+window.addEventListener('load', () => {});
+var long;
+var lat;
+// Accessing Geolocation of User
+  if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((position) => {
+        // Storing Longitude and Latitude in variables
+        long = position.coords.longitude;
+        lat = position.coords.latitude;
+      });
+    }
+
+
+
+
+ // parse the response to display the current weather including the city name, date and current weather icon.
+    console.log(response);
