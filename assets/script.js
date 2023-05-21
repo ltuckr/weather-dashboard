@@ -9,8 +9,14 @@ var searchLocation = $("#search-location");
 var currentLocation = $("#current-location");
 
 //variables for button clicks to add/clear search results:
-var searchBar = ("#search-bar");
-var clearIt = ("#clear-it");
+var searchButton = $("#search-button");
+var clearHistory = $("#clear-history");
 
 //variable to commit search results to local storage
 var city="";
+
+//variables for current weather conditions
+var condNow = $("cond-now");
+var tempNow = $("temp-now");
+var humidityNow = $("humidity-now");
+var windNow = $("wind=now");
