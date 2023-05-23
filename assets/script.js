@@ -24,7 +24,7 @@ var tempNow = $("temp-now");
 var humidityNow = $("humidity-now");
 var windNow = $("wind=now");
 
-// call current weather code from https://nordicapis.com/how-to-build-an-api-driven-weather-app/
+// call current weather - code from https://nordicapis.com/how-to-build-an-api-driven-weather-app/
 window.addEventListener('load', () => {});
 var long;
 var lat;
@@ -36,9 +36,10 @@ var lat;
         lat = position.coords.latitude;
       });
     }
-
-
-
-
  // parse the response to display the current weather including the city name, date and current weather icon.
     console.log(response);
+
+var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
+
+
+
