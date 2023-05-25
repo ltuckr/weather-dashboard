@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="assets\style.css" />
+   
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,13 +15,16 @@
 
       <!--Bootstrap -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+      <!--Icons-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="assets\style.css" />
 </head>
 
 <body>
     <div class="container">
             <!--create search row-->
         <div class="row">
-        <div class="col-sm-4 bg-light">
+        <div class="col-sm-4 bg-transparent">
             
              <h4 class="pt-1">Enter a location:</h4>
                 <!--Search bar entry-->
@@ -34,18 +37,10 @@
         <img src="" alt="" srcset="" id="weather-icon">
         <div id="location">Unable to Fetch Weather</div>
         <div class="desc">No Information Available.</div>
-        <div class="weather">
-            <div class="c">Error</div>
-            <div class="circle"></div>
-            <div class="f">Error</div>
-        </div>
-        <div class="info">
-            <h4>Sunrise: <span class="sunrise">No Information Available</span></h4>
-            <h4>Sunset: <span class="sunset">No Information Available</span></h4>
-        </div>
+     
     <!--5 day forecast row-->
     <div class="col-sm-12" id ="future-weather">
-        <h3>5 Day Forecast:</h3>
+        <h3>Your 5 Day Forecast:</h3>
         <div class="row text-light">
             <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
                 <p id="fDate0"></p>
