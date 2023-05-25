@@ -36,7 +36,7 @@ var lat;
         lat = position.coords.latitude;
       });
     }
- // parse the response to display the current weather including the city name, date and current weather icon.
+ // display current city and conditions to console
     console.log(response);
 
 var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
@@ -52,6 +52,11 @@ var date=new Date(response.dt*1000).toLocaleDateString();
 // C to F conversion.
 var tempFarenheit = (response.main.temp - 273.15) * 1.80 + 32;
   $(currentTemperature).html((tempF).toFixed(2)+"&#8457");
+
+// Humidity
+  $(humidityNow).html(response.main.humidity+"%");
+
+
         
 
 
