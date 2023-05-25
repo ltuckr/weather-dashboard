@@ -7,13 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather app</title>
     <link rel="stylesheet" href="assets\style.css" />
+
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+
+      <!--Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
 </head>
 
 <body>
     <div class="container">
+            <!--create search row-->
+        <div class="row">
+        <div class="col-sm-4 bg-light">
+            
+             <h4 class="pt-1">Enter a location:</h4>
+                <!--Search bar-->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control"id="search-city" aria-label="City Search" aria-describedby="search-button">
+        <div class="input-group-append">
+        <button class=" btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
+        </div>
+
         <img src="" alt="" srcset="" id="weather-icon">
         <div id="location">Unable to Fetch Weather</div>
         <div class="desc">No Information Available.</div>
