@@ -56,6 +56,11 @@ var tempFarenheit = (response.main.temp - 273.15) * 1.80 + 32;
 // Humidity
   $(humidityNow).html(response.main.humidity+"%");
 
+//Wind with mph conversion
+var ws=response.wind.speed;
+var windsmph=(ws*2.237).toFixed(1);
+  $(windNow).html(windsmph+"MPH");
+
 
         
 
