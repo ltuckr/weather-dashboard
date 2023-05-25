@@ -24,6 +24,14 @@ var tempNow = $("#temp-now");
 var humidityNow = $("#humidity-now");
 var windNow = $("#wind-now");
 
+//function to display the weather
+function displayWeather(event){
+  event.preventDefault();
+  if(searchLocation.val().trim()!==""){
+      city=searchLocation.val().trim();
+      currentWeather(city);
+  }
+
 // 5-day forecast function
 function forecast(cityid) {
   var dayover = false;
