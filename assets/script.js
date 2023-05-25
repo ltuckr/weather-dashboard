@@ -90,7 +90,7 @@ var windsmph=(ws*2.237).toFixed(1);
 // variable for rendering from local storage
 var storedCity=[];
 //render list
-function loadstoredCity(){
+function loadStoredCity(){
   $("ul").empty();
   var storedCity = JSON.parse(localStorage.getItem("cityname"));
   if(storedCity!==null){
@@ -111,7 +111,11 @@ function clearHistory(event){
   document.location.reload();
 
 }
-
+//Click Handlers
+$("#search-button").on("click",displayWeather);
+$(document).on("click",invokePastSearch);
+$(window).on("load",loadStoredCity);
+$("#clear-history").on("click",clearHistory);
         
 
 
