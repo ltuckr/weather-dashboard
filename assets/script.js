@@ -105,6 +105,14 @@ window.addEventListener('load', function () {
   }
 });
 
+// display the past search results
+function pastSearch(event){
+  var liEl=event.target;
+  if (event.target.matches("li")){
+      city=liEl.textContent.trim();
+      currentWeather(city);
+  }
+
 // Variable for rendering from local storage
 var storedCity = [];
 
