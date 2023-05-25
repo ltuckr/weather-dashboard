@@ -87,6 +87,22 @@ var ws=response.wind.speed;
 var windsmph=(ws*2.237).toFixed(1);
   $(windNow).html(windsmph+"MPH");
 
+// variable for rendering from local storage
+var storedCity=[];
+//render list
+function loadstoredCity(){
+  $("ul").empty();
+  var storedCity = JSON.parse(localStorage.getItem("cityname"));
+  if(storedCity!==null){
+      sCity=JSON.parse(localStorage.getItem("cityname"));
+      for(i=0; i<storedCity.length;i++){
+          addToList(storedCity[i]);
+      }
+      city=storedCity[i-1];
+      currentWeather(city);
+  }
+
+}
 
         
 
