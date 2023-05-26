@@ -15,23 +15,7 @@ h3{
 .forecast{
   
   font-size: 0.9em;
-}
-/*https://nordicapis.com/how-to-build-an-api-driven-weather-app*/
-.container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: rgb(251, 242, 133);
-  background: radial-gradient(
-    circle,
-    rgba(251, 242, 133, 0.6334908963585435) 0%,
-    rgba(224, 196, 91, 0.8407738095238095) 35%,
-    rgba(230, 224, 113, 1) 100%
-  );
-}
+
 span{
   font-size: 1em;
 }

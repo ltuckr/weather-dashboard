@@ -24,6 +24,12 @@ var tempNow = $("#temp-now");
 var humidityNow = $("#humidity-now");
 var windNow = $("#wind-now");
 
+// Click Handlers
+$("#search-button").on("click", displayWeather);
+$(document).on("click", invokePastSearch);
+$(window).on("load", loadStoredCity);
+$("#clear-history").on("click", clearHistory);
+
 //function to display the weather
 function displayWeather(event){
   event.preventDefault();
@@ -136,12 +142,6 @@ function clearHistory(event) {
   localStorage.removeItem("cityname");
   document.location.reload();
 }
+};
 
-// Click Handlers
-$("#search-button").on("click", displayWeather);
-$(document).on("click", invokePastSearch);
-$(window).on("load", loadStoredCity);
-$("#clear-history").on("click", clearHistory);
-        
-
-
+}
