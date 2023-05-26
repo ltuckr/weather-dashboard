@@ -5,30 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Weather app</title>
-    <link rel="stylesheet" href="assets\style.css" />
+    <title>Weather Dashboard</title>
+   
+
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
+
+      <!--Bootstrap -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap-grid.min.css"/>
+      <!--Icons-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="assets\style.css" />
 </head>
 
 <body>
+        <!--Jumbotron-->
+        <div class="jumbotron container-fluid mt-2 text-center p-2" style="background-color:#0864ec ;color: white;">
+            <h1> Weather Dashboard</h1>
+        </div>
     <div class="container">
+            <!--create search row-->
+        <div class="row">
+        <div class="col-sm-4 bg-transparent">
+            
+             <h4 class="pt-1">Enter a location:</h4>
+                <!--Search bar entry-->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control"id="search-city" aria-label="City Search" aria-describedby="search-button">
+        <div class="input-group-append">
+        <button class=" btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
+        </div>
+
         <img src="" alt="" srcset="" id="weather-icon">
         <div id="location">Unable to Fetch Weather</div>
         <div class="desc">No Information Available.</div>
-        <div class="weather">
-            <div class="c">Error</div>
-            <div class="circle"></div>
-            <div class="f">Error</div>
+     
+    <!--5 day forecast row-->
+    <div class="col-sm-12" id ="future-weather">
+        <h3>Your 5 Day Forecast:</h3>
+        <div class="row text-light">
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                <p id="fDate0"></p>
+                <p id="fImg0"></p>
+                <p>Temp:<span id="fTemp0"></span></p>
+                <p>Humidity:<span id="fHumidity0"></span></p>
+            </div>
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                <p id="fDate1"></p>
+                <p id="fImg1"></p>
+                <p>Temp:<span id="fTemp1"></span></p>
+                <p>Humidity:<span id="fHumidity1"></span></p>
+            </div>
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <p id="fDate2"></p>
+                <p id="fImg2"></p>
+                <p>Temp:<span id="fTemp2"></span></p>
+                <p>Humidity:<span id="fHumidity2"></span></p>
+            </div>
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                <p id="fDate3"></p>
+                <p id="fImg3"></p>
+                <p>Temp:<span id="fTemp3"></span></p>
+                <p>Humidity:<span id="fHumidity3"></span></p>
+            </div>
+            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
+                <p id="fDate4"></p>
+                <p id="fImg4"></p>
+                <p>Temp:<span id="fTemp4"></span></p>
+                <p>Humidity:<span id="fHumidity4"></span></p>
+            </div>
         </div>
-        <div class="info">
-            <h4>Sunrise: <span class="sunrise">No Information Available</span></h4>
-            <h4>Sunset: <span class="sunset">No Information Available</span></h4>
-        </div>
-
     </div>
-    <script src="assets\script.js"></script>
+    
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="assets\script.js"></script>
 </body>
 
 </html>
