@@ -6,82 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather Dashboard</title>
-   
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap" rel="stylesheet">
 
-      <!--Bootstrap -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap-grid.min.css"/>
-      <!--Icons-->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="assets\style.css" />
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap-grid.min.css"/>
+    <!--Icons-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/style.css"/>
 </head>
 
 <body>
-        <!--Jumbotron-->
-        <div class="jumbotron container-fluid mt-2 text-center p-2" style="background-color:#0864ec ;color: white;">
-            <h1> Weather Dashboard</h1>
-        </div>
+    <style>
+        /* Set  background image  */
+        body {
+          font-family: "Nunito Sans", Arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.6;
+          color: #333;
+          background-image: url('assets/images/weather.jpg'); 
+          background-size: cover; /* Scale the image to cover the entire viewport */
+          background-position: center; 
+          background-repeat: no-repeat; 
+          background-attachment: fixed;
+        }
+      </style>
+    <!--Jumbotron-->
+    <div class="jumbotron container-fluid mt-2 text-center p-2" style="background-color:#0864ec ;color: white;">
+        <h1> Weather Dashboard</h1>
+    </div>
     <div class="container">
-            <!--create search row-->
+        <!--create search row-->
         <div class="row">
-        <div class="col-sm-4 bg-transparent">
-            
-             <h4 class="pt-1">Enter a location:</h4>
+            <div class="col-sm-4 bg-transparent">
+                <h4 class="pt-1">Enter a location:</h4>
                 <!--Search bar entry-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control"id="search-city" aria-label="City Search" aria-describedby="search-button">
-        <div class="input-group-append">
-        <button class=" btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
-        </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="search-city" aria-label="City Search" aria-describedby="search-button">
+                    <div class="input-group-append">
+                        <button class="btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+                <img src="" alt="" srcset="" id="weather-icon">
+                <div id="location">Unable to Fetch Weather</div>
+                <div class="desc">No Information Available.</div>
 
-        <img src="" alt="" srcset="" id="weather-icon">
-        <div id="location">Unable to Fetch Weather</div>
-        <div class="desc">No Information Available.</div>
-     
-    <!--5 day forecast row-->
-    <div class="col-sm-12" id ="future-weather">
-        <h3>Your 5 Day Forecast:</h3>
-        <div class="row text-light">
-            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
-                <p id="fDate0"></p>
-                <p id="fImg0"></p>
-                <p>Temp:<span id="fTemp0"></span></p>
-                <p>Humidity:<span id="fHumidity0"></span></p>
-            </div>
-            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
-                <p id="fDate1"></p>
-                <p id="fImg1"></p>
-                <p>Temp:<span id="fTemp1"></span></p>
-                <p>Humidity:<span id="fHumidity1"></span></p>
-            </div>
-            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                <p id="fDate2"></p>
-                <p id="fImg2"></p>
-                <p>Temp:<span id="fTemp2"></span></p>
-                <p>Humidity:<span id="fHumidity2"></span></p>
-            </div>
-            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
-                <p id="fDate3"></p>
-                <p id="fImg3"></p>
-                <p>Temp:<span id="fTemp3"></span></p>
-                <p>Humidity:<span id="fHumidity3"></span></p>
-            </div>
-            <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded" >
-                <p id="fDate4"></p>
-                <p id="fImg4"></p>
-                <p>Temp:<span id="fTemp4"></span></p>
-                <p>Humidity:<span id="fHumidity4"></span></p>
+                <!--5 day forecast row-->
+                <div class="col-sm-12" id="future-weather">
+                    <h3>Your 5 Day Forecast:</h3>
+                    <div class="row text-light">
+                        <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate0"></p>
+                            <p id="fImg0"></p>
+                            <p>Temp:<span id="fTemp0"></span></p>
+                            <p>Humidity:<span id="fHumidity0"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate1"></p>
+                            <p id="fImg1"></p>
+                            <p>Temp:<span id="fTemp1"></span></p>
+                            <p>Humidity:<span id="fHumidity1"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate2"></p>
+                            <p id="fImg2"></p>
+                            <p>Temp:<span id="fTemp2"></span></p>
+                            <p>Humidity:<span id="fHumidity2"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate3"></p>
+                            <p id="fImg3"></p>
+                            <p>Temp:<span id="fTemp3"></span></p>
+                            <p>Humidity:<span id="fHumidity3"></span></p>
+                        </div>
+                        <div class="col-sm-2 bg-primary forecast text-white ml-2 mb-3 p-2 mt-2 rounded">
+                            <p id="fDate4"></p>
+                            <p id="fImg4"></p>
+                            <p>Temp:<span id="fTemp4"></span></p>
+                            <p>Humidity:<span id="fHumidity4"></span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="assets\script.js"></script>
+    <!-- Include Day.js -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7"></script>
+    
+    <!-- Include your custom JavaScript file -->
+    <script src="assets/script.js"></script>
+
 </body>
 
 </html>
