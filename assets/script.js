@@ -15,7 +15,7 @@ var fHumidity0 = document.getElementById('fHumidity0');
 var fWind0 = document.getElementById('fWind0');
 var fImg0 = document.getElementById('fImg0');
 
-// Weather icons mapping
+// Weather icons 
 const weatherIcons = {
     '01d': 'fa-sun',      // Clear sky day
     '01n': 'fa-moon',    // Clear sky night
@@ -104,7 +104,7 @@ function fetchFiveDayForecast(cityName) {
             if (response.ok) {
                 return response.json();
             } else {
-                throw an Error('City not found');
+                throw Error('City not found');
             }
         })
         .then(function (data) {
