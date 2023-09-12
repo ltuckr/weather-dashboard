@@ -1,4 +1,4 @@
-//my API key for openweathermap.org
+// my API key for openweathermap.org
 var apiKey = '496d9caed19b5898e62a2e3928f9c3d3';
 
 // DOM elements
@@ -17,17 +17,23 @@ var fWind0 = document.getElementById('fWind0');
 var fUV0 = document.getElementById('fUV0');
 
 // Event listener for the search button
-searchButton.addEventListener('click', function () {
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    
     var city = searchCityInput.value;
     
     // Call function to fetch weather data and display it
     fetchWeatherData(city);
 });
 
+// Function to convert Kelvin to Fahrenheit
+function k2f(K) {
+    return ((K - 273.15) * 9) / 5 + 32;
+}
+
 // Function to fetch weather data from the API
-// Inside the fetchWeatherData function
 function fetchWeatherData(city) {
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
     
     fetch(apiUrl)
         .then(function (response) {
@@ -38,27 +44,29 @@ function fetchWeatherData(city) {
             }
         })
         .then(function (data) {
-            // Assuming data.list is an array containing 5-day forecast data
-            for (let i = 0; i < 5; i++) {
-                const forecastDate = new Date(data.list[i * 8].dt * 1000);
-                const dateElement = document.getElementById(`fDate${i}`);
-                const tempElement = document.getElementById(`fTemp${i}`);
-                const humidityElement = document.getElementById(`fHumidity${i}`);
-                const windElement = document.getElementById(`fWind${i}`);
-                const uvElement = document.getElementById(`fUV${i}`);
-                
-                // Set the innerHTML of each card with forecast data
-                dateElement.textContent = formatDate(forecastDate);
-                tempElement.textContent = `Temp: ${k2f(data.list[i * 8].main.temp)} °F`;
-                humidityElement.textContent = `Humidity: ${data.list[i * 8].main.humidity}%`;
-                windElement.textContent = `Wind: ${data.list[i * 8].wind.speed} MPH`;
-                uvElement.textContent = `UV Index: ${getUVIndex(data.list[i * 8].coord.lat, data.list[i * 8].coord.lon)}`;
-            }
+            displayWeather(data);
         })
         .catch(function (error) {
             console.error('Error:', error);
             alert(error.message);
         });
+}
+
+// Function to display weather data
+function displayWeather(data) {
+    var cityName = data.name;
+    var temperature = data.main.temp;
+    var humidity = data.main.humidity;
+    var windSpeed = data.wind.speed;
+    
+    locationElement.textContent = cityName;
+    weatherDescriptionElement.textContent = 'Weather Description: ' + data.weather[0].description;
+    fTemp0.textContent = 'Temperature: ' + temperature;
+    fHumidity0.textContent = 'Humidity: ' + humidity;
+    fWind0.textContent = 'Wind Speed: ' + windSpeed;
+    
+    // Call a function to fetch and display the 5-day forecast
+    fetchFiveDayForecast(cityName);
 }
 
 // Helper function to format date
@@ -67,44 +75,67 @@ function formatDate(date) {
     return date.toLocaleDateString(undefined, options);
 }
 
-// Helper function to get UV index based on lat and lon
+// Function to get UV index based on lat and lon
 function getUVIndex(lat, lon) {
+    var uvIndexUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     
-    return 'UV Index Value';
+    return fetch(uvIndexUrl)
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('UV Index not available');
+            }
+        })
+        .then(function (data) {
+            return data.value;
+        })
+        .catch(function (error) {
+            console.error('Error:', error);
+            return 'UV Index N/A';
+        });
 }
 
-
-// Function to display current weather
-function displayCurrentWeather(data) {
-    // Extract data from the response and update the DOM
-    var cityName = data.city.name;
-    var temperature = data.list[0].main.temp;
-    var humidity = data.list[0].main.humidity;
-    var windSpeed = data.list[0].wind.speed;
-    var uvIndex = data.list[0].uvIndex; 
+// Function to display the 5-day forecast
+function fetchFiveDayForecast(cityName) {
+    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
     
-    locationElement.textContent = cityName;
-    weatherDescriptionElement.textContent = 'Weather Description: ' + data.list[0].weather[0].description;
-    // Update other weather details in a similar way
-    fDate0.textContent = 'Date: ' + data.list[0].dt_txt;
-    fTemp0.textContent = 'Temperature: ' + temperature;
-    fHumidity0.textContent = 'Humidity: ' + humidity;
-    fWind0.textContent = 'Wind Speed: ' + windSpeed;
-    fUV0.textContent = 'UV Index: ' + uvIndex;
+    fetch(apiUrl)
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('City not found');
+            }
+        })
+        .then(function (data) {
+            displayFiveDayForecast(data);
+        })
+        .catch(function (error) {
+            console.error('Error:', error);
+            alert(error.message);
+        });
+}
+
+// Function to display the 5-day forecast
+function displayFiveDayForecast(data) {
     
-  
+    for (let i = 0; i < 5; i++) {
+        const forecastDate = new Date(data.list[i * 8].dt * 1000);
+        const dateElement = document.getElementById(`fDate${i}`);
+        const tempElement = document.getElementById(`fTemp${i}`);
+        const humidityElement = document.getElementById(`fHumidity${i}`);
+        const windElement = document.getElementById(`fWind${i}`);
+        const uvElement = document.getElementById(`fUV${i}`);
+
+        // Set the innerHTML of each card with forecast data
+        dateElement.textContent = formatDate(forecastDate);
+        tempElement.textContent = 'Temperature: ' + k2f(data.list[i * 8].main.temp);
+        humidityElement.textContent = 'Humidity: ' + data.list[i * 8].main.humidity + '%';
+        windElement.textContent = 'Wind Speed: ' + data.list[i * 8].wind.speed + ' MPH';
+        uvElement.textContent = 'UV Index: ' + getUVIndex(data.city.coord.lat, data.city.coord.lon);
+    }
 }
 
-// Function to display 5-day forecast
-function displayFutureWeather(data) {
- 
-}
 
 
-function addToSearchHistory(city) {
-   
-}
-
-function renderSearchHistory() {
-   
-}
