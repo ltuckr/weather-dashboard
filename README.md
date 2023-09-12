@@ -3,20 +3,22 @@ an API driven weather app
 
 ## Description: 
 
-This app allows the user to look up a current and 5 day advanced forecast for the city of their choice, by deploying OpenWeatherMap API.
+This app allows the user to look up a current and 5 day advanced forecast for the city of their choice, by deploying OpenWeatherMap API. It offers information for 5 days, and also stores prior searches. 
 
 
 ## Installation
 
-This is a simple web page URL. Deploying the link should allow you to arrive at the following screen: 
-![5320e374af4585bf9a7deff817cdbc2f](https://github.com/ltuckr/weather-dashboard/assets/128933116/c61d4b80-8043-433e-a6b9-790b288d9b52)
+This is a simple web page URL. Deploying the link is all you need. 
 
+## Screenshot
+
+
+![weather dashboard](https://github.com/ltuckr/weather-dashboard/assets/128933116/2875ff3d-a42d-4418-ae33-1f38f35bbe2c)
 
 
 ## Usage
 
-This webpage is intended for casual users to explore a 5 day weather forecast.
-
+This webpage is intended for casual users to explore a 5 day weather forecast in their selected city. 
 
 
 ## Credits
