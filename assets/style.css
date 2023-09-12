@@ -45,7 +45,11 @@ body {
 }
 
 #search-button:hover {
-  background-color: #0056b3;
+  background-color: hsl(30, 76%, 52%);
+}
+
+.lavender-text {
+  color: #a588bc; 
 }
 
 /* Style the weather information section */
