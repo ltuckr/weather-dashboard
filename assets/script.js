@@ -14,6 +14,29 @@ var fDate0 = document.getElementById('fDate0');
 var fTemp0 = document.getElementById('fTemp0');
 var fHumidity0 = document.getElementById('fHumidity0');
 var fWind0 = document.getElementById('fWind0');
+var fImg0 = document.getElementById('fImg0');
+
+// Weather icons mapping
+const weatherIcons = {
+    '01d': 'fa-sun',      // Clear sky day
+    '01n': 'fa-moon',    // Clear sky night
+    '02d': 'fa-cloud-sun', // Few clouds day
+    '02n': 'fa-cloud-moon', // Few clouds night
+    '03d': 'fa-cloud',     // Scattered clouds day
+    '03n': 'fa-cloud',     // Scattered clouds night
+    '04d': 'fa-cloud',     // Broken clouds day
+    '04n': 'fa-cloud',     // Broken clouds night
+    '09d': 'fa-cloud-showers-heavy', // Rain day
+    '09n': 'fa-cloud-showers-heavy', // Rain night
+    '10d': 'fa-cloud-sun-rain', // Rain showers day
+    '10n': 'fa-cloud-moon-rain', // Rain showers night
+    '11d': 'fa-bolt',     // Thunderstorm day
+    '11n': 'fa-bolt',     // Thunderstorm night
+    '13d': 'fa-snowflake', // Snow day
+    '13n': 'fa-snowflake', // Snow night
+    '50d': 'fa-smog',      // Mist day
+    '50n': 'fa-smog'      // Mist night
+};
 
 // Event listener for the search button
 searchButton.addEventListener('click', function (event) {
@@ -57,12 +80,17 @@ function displayWeather(data) {
     var temperature = data.main.temp;
     var humidity = data.main.humidity;
     var windSpeed = data.wind.speed;
+    var weatherConditionCode = data.weather[0].icon; // Weather condition code
     
     locationElement.textContent = cityName;
     weatherDescriptionElement.textContent = 'Weather Description: ' + data.weather[0].description;
-    fTemp0.textContent = 'Temperature: ' + k2f(temperature) + ' °F';
+    fTemp0.textContent = 'Temperature: ' + Math.round(k2f(temperature)) + ' °F'; // Round temperature to whole number
     fHumidity0.textContent = 'Humidity: ' + humidity + '%';
     fWind0.textContent = 'Wind Speed: ' + windSpeed + ' MPH';
+    
+    // Set the weather icon based on the condition code
+    const iconClass = weatherIcons[weatherConditionCode];
+    fImg0.innerHTML = `<i class="fa ${iconClass}"></i>`;
     
     // Call a function to fetch and display the 5-day forecast
     fetchFiveDayForecast(cityName);
@@ -89,7 +117,6 @@ function fetchFiveDayForecast(cityName) {
         });
 }
 
-
 // Function to display the 5-day forecast
 function displayFiveDayForecast(data) {
     const currentDate = new Date(); // Get the current date
@@ -103,7 +130,7 @@ function displayFiveDayForecast(data) {
         const tempElement = document.getElementById(`fTemp${i}`);
         const humidityElement = document.getElementById(`fHumidity${i}`);
         const windElement = document.getElementById(`fWind${i}`);
-      
+        const iconElement = document.getElementById(`fImg${i}`); // Add this line to get the icon element
 
         // Set the innerHTML of each card with forecast data
         dateElement.innerHTML = formatDate(forecastDate);
@@ -111,9 +138,12 @@ function displayFiveDayForecast(data) {
         humidityElement.innerHTML = forecastData.main.humidity + '%';
         windElement.innerHTML = forecastData.wind.speed + ' MPH';
         
+        // Set the weather icon based on the condition code
+        const conditionCode = forecastData.weather[0].icon;
+        const iconClass = weatherIcons[conditionCode];
+        iconElement.innerHTML = `<i class="fa ${iconClass}"></i>`;
     }
 }
-
 
 // Helper function to format date
 function formatDate(date) {
