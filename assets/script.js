@@ -90,21 +90,23 @@ function fetchFiveDayForecast(cityName) {
 }
 
 // Function to display the 5-day forecast
+// Function to display the 5-day forecast
 function displayFiveDayForecast(data) {
-
     for (let i = 0; i < 5; i++) {
-        const forecastData = data.list[i * 8]; // Get the forecast data for each day
+        const forecastData = data.list[i]; // Get the forecast data for each day
         const forecastDate = new Date(forecastData.dt * 1000);
         const dateElement = document.getElementById(`fDate${i}`);
         const tempElement = document.getElementById(`fTemp${i}`);
         const humidityElement = document.getElementById(`fHumidity${i}`);
         const windElement = document.getElementById(`fWind${i}`);
+        const uvElement = document.getElementById(`fUV${i}`);
 
         // Set the innerHTML of each card with forecast data
         dateElement.innerHTML = formatDate(forecastDate);
-        tempElement.innerHTML = k2f(forecastData.main.temp) + ' &#176F';
+        tempElement.innerHTML = Math.round(k2f(forecastData.main.temp)) + ' &#176F'; // Round temperature to whole number
         humidityElement.innerHTML = forecastData.main.humidity + '%';
         windElement.innerHTML = forecastData.wind.speed + ' MPH';
+        
     }
 }
 
