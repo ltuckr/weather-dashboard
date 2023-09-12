@@ -17,10 +17,7 @@ var fHumidity0 = document.getElementById('fHumidity0');
 var fWind0 = document.getElementById('fWind0');
 var fIcon0 = document.getElementById('fIcon0');
 
-// Weather icons mapping
-const weatherIcons = {
-    // ... (your existing icons mapping)
-};
+
 
 // Event listener for the search button
 searchButton.addEventListener('click', function (event) {
@@ -115,10 +112,6 @@ function displayWeather(data) {
     fHumidity0.textContent = 'Humidity: ' + humidity + '%';
     fWind0.textContent = 'Wind Speed: ' + windSpeed + ' MPH';
 
-    // Set the weather icon based on the condition code
-    const iconClass = weatherIcons[weatherConditionCode];
-    weatherIcon.innerHTML = `<i class="fa ${iconClass}"></i>`;
-
     // Call a function to fetch and display the 5-day forecast
     fetchFiveDayForecast(cityName);
 }
@@ -144,6 +137,7 @@ function fetchFiveDayForecast(cityName) {
         });
 }
 
+
 // Function to display the 5-day forecast
 function displayFiveDayForecast(data) {
     const currentDate = new Date(); // Get the current date
@@ -164,11 +158,6 @@ function displayFiveDayForecast(data) {
         tempElement.innerHTML = Math.round(k2f(forecastData.main.temp)) + ' &#176F'; // Round temperature to a whole number
         humidityElement.innerHTML = forecastData.main.humidity + '%';
         windElement.innerHTML = forecastData.wind.speed + ' MPH';
-
-        // Set the weather icon based on the condition code for each day
-        const conditionCode = forecastData.weather[0].icon;
-        const iconClass = weatherIcons[conditionCode];
-        iconElement.innerHTML = `<img src="http://openweathermap.org/img/w/${conditionCode}.png" alt="Weather icon">`;
     }
 }
 
