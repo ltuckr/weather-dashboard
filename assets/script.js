@@ -118,6 +118,7 @@ function fetchFiveDayForecast(cityName) {
 }
 
 // Function to display the 5-day forecast
+// Function to display the 5-day forecast
 function displayFiveDayForecast(data) {
     const currentDate = new Date(); // Get the current date
     currentDate.setHours(0, 0, 0, 0); // Set the time to midnight for accurate comparison
@@ -130,20 +131,21 @@ function displayFiveDayForecast(data) {
         const tempElement = document.getElementById(`fTemp${i}`);
         const humidityElement = document.getElementById(`fHumidity${i}`);
         const windElement = document.getElementById(`fWind${i}`);
-        const iconElement = document.getElementById(`fImg${i}`); // Add this line to get the icon element
+        const iconElement = document.getElementById(`fImg${i}`);
 
         // Set the innerHTML of each card with forecast data
         dateElement.innerHTML = formatDate(forecastDate);
         tempElement.innerHTML = Math.round(k2f(forecastData.main.temp)) + ' &#176F'; // Round temperature to whole number
         humidityElement.innerHTML = forecastData.main.humidity + '%';
         windElement.innerHTML = forecastData.wind.speed + ' MPH';
-        
-        // Set the weather icon based on the condition code
+
+        // Set the weather icon based on the condition code for each day
         const conditionCode = forecastData.weather[0].icon;
         const iconClass = weatherIcons[conditionCode];
         iconElement.innerHTML = `<i class="fa ${iconClass}"></i>`;
     }
 }
+
 
 // Helper function to format date
 function formatDate(date) {
