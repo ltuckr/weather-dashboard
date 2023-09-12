@@ -4,7 +4,6 @@ var apiKey = '496d9caed19b5898e62a2e3928f9c3d3';
 // DOM elements
 var searchCityInput = document.getElementById('search-city');
 var searchButton = document.getElementById('search-button');
-var weatherIcon = document.getElementById('weather-icon');
 var locationElement = document.getElementById('location');
 var weatherDescriptionElement = document.querySelector('.desc');
 var futureWeatherElement = document.getElementById('future-weather');
@@ -105,7 +104,7 @@ function fetchFiveDayForecast(cityName) {
             if (response.ok) {
                 return response.json();
             } else {
-                throw new Error('City not found');
+                throw an Error('City not found');
             }
         })
         .then(function (data) {
@@ -117,7 +116,6 @@ function fetchFiveDayForecast(cityName) {
         });
 }
 
-// Function to display the 5-day forecast
 // Function to display the 5-day forecast
 function displayFiveDayForecast(data) {
     const currentDate = new Date(); // Get the current date
@@ -135,7 +133,7 @@ function displayFiveDayForecast(data) {
 
         // Set the innerHTML of each card with forecast data
         dateElement.innerHTML = formatDate(forecastDate);
-        tempElement.innerHTML = Math.round(k2f(forecastData.main.temp)) + ' &#176F'; // Round temperature to whole number
+        tempElement.innerHTML = Math.round(k2f(forecastData.main.temp)) + ' °F'; // Round temperature to whole number
         humidityElement.innerHTML = forecastData.main.humidity + '%';
         windElement.innerHTML = forecastData.wind.speed + ' MPH';
 
@@ -145,7 +143,6 @@ function displayFiveDayForecast(data) {
         iconElement.innerHTML = `<i class="fa ${iconClass}"></i>`;
     }
 }
-
 
 // Helper function to format date
 function formatDate(date) {
