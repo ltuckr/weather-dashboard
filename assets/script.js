@@ -4,6 +4,7 @@ var apiKey = '496d9caed19b5898e62a2e3928f9c3d3';
 // DOM elements
 var searchCityInput = document.getElementById('search-city');
 var searchButton = document.getElementById('search-button');
+var weatherIcon = document.getElementById('weather-icon');
 var locationElement = document.getElementById('location');
 var weatherDescriptionElement = document.querySelector('.desc');
 var futureWeatherElement = document.getElementById('future-weather');
@@ -13,9 +14,9 @@ var fDate0 = document.getElementById('fDate0');
 var fTemp0 = document.getElementById('fTemp0');
 var fHumidity0 = document.getElementById('fHumidity0');
 var fWind0 = document.getElementById('fWind0');
-var fImg0 = document.getElementById('fImg0');
+var fIcon0 = document.getElementById('fIcon0');
 
-// Weather icons 
+// Weather icons mapping
 const weatherIcons = {
     '01d': 'fa-sun',      // Clear sky day
     '01n': 'fa-moon',    // Clear sky night
@@ -89,7 +90,7 @@ function displayWeather(data) {
 
     // Set the weather icon based on the condition code
     const iconClass = weatherIcons[weatherConditionCode];
-    fImg0.innerHTML = `<i class="fa ${iconClass}"></i>`;
+    weatherIcon.innerHTML = `<i class="fa ${iconClass}"></i>`;
 
     // Call a function to fetch and display the 5-day forecast
     fetchFiveDayForecast(cityName);
@@ -129,7 +130,7 @@ function displayFiveDayForecast(data) {
         const tempElement = document.getElementById(`fTemp${i}`);
         const humidityElement = document.getElementById(`fHumidity${i}`);
         const windElement = document.getElementById(`fWind${i}`);
-        const iconElement = document.getElementById(`fImg${i}`);
+        const iconElement = document.getElementById(`fIcon${i}`);
 
         // Set the innerHTML of each card with forecast data
         dateElement.innerHTML = formatDate(forecastDate);
@@ -140,7 +141,7 @@ function displayFiveDayForecast(data) {
         // Set the weather icon based on the condition code for each day
         const conditionCode = forecastData.weather[0].icon;
         const iconClass = weatherIcons[conditionCode];
-        iconElement.innerHTML = `<i class="fa ${iconClass}"></i>`;
+        iconElement.innerHTML = `<img src="http://openweathermap.org/img/w/${conditionCode}.png" alt="Weather icon">`;
     }
 }
 
