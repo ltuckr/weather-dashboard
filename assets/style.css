@@ -69,7 +69,16 @@ body {
   text-transform: capitalize;
 }
 
-/* Style the forecast cards for a cleaner look */
+#future-weather {
+  text-align: center;
+  margin-top: 100px; 
+}
+
+#future-weather .row {
+  justify-content: space-between;
+}
+
+
 .forecast {
   background-color: var(--primary-color);
   color: white;
