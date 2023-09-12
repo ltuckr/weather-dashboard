@@ -89,17 +89,21 @@ function fetchFiveDayForecast(cityName) {
         });
 }
 
-// Function to display the 5-day forecast
+
 // Function to display the 5-day forecast
 function displayFiveDayForecast(data) {
+    const currentDate = new Date(); // Get the current date
+    currentDate.setHours(0, 0, 0, 0); // Set the time to midnight for accurate comparison
+
     for (let i = 0; i < 5; i++) {
-        const forecastData = data.list[i]; // Get the forecast data for each day
+        var forecastData = data.list[i * 8]; // Get the forecast data for each day
         const forecastDate = new Date(forecastData.dt * 1000);
+        forecastDate.setHours(0, 0, 0, 0); // Set the time to midnight for accurate comparison
         const dateElement = document.getElementById(`fDate${i}`);
         const tempElement = document.getElementById(`fTemp${i}`);
         const humidityElement = document.getElementById(`fHumidity${i}`);
         const windElement = document.getElementById(`fWind${i}`);
-        const uvElement = document.getElementById(`fUV${i}`);
+      
 
         // Set the innerHTML of each card with forecast data
         dateElement.innerHTML = formatDate(forecastDate);
@@ -109,6 +113,7 @@ function displayFiveDayForecast(data) {
         
     }
 }
+
 
 // Helper function to format date
 function formatDate(date) {
